@@ -1,0 +1,121 @@
+body{
+    font-size: 45px;
+    background-color: blanchedalmond;
+    user-select: none;
+    overflow: hidden;
+}
+
+.strongTitle{
+    font-size: 2em;
+    text-shadow: 2px 2px 2px black;
+
+}
+
+.title{
+    top:0;
+    left:0;
+    height: 10%;
+    position: static;
+    color:brown;
+    background-color: rgb(219, 173, 173);
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+#main{
+    padding: 2%;
+}
+
+.flexContiner{
+    width: 100vw;
+    display: flex;
+    /* margin-top: 5vh; */
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.flexBox_img{
+    flex:none;
+    width: 30%;
+    /* margin-right: auto;
+    margin-left: auto; */
+    align-items:start;
+    text-align: center;/*inline*/
+}
+.flexBox_text{
+    width:45%;
+    text-align: start;
+    flex:none;
+
+}
+/*  */
+.flexBox_level{
+    flex: none;
+    width: 15%;
+    height: 15%;
+    margin-top: 5%;
+    margin-left: 7%;
+    margin-right: 7%;
+    background-color: rgb(142, 197, 199);
+    text-align: center;
+    border-radius: 5%;
+
+}
+/*  */
+.role{
+    object-fit:contain;
+    max-width: 30vw; height: auto;
+}
+
+.button{
+    margin: 5%;
+    padding: 2%;
+}
+
+.result{
+    border-bottom: 1px solid #000;
+    margin: 5%;
+    padding: 2%
+}
+.data{
+    text-align: end;
+}
+
+a{
+    text-decoration: none;
+    color:aliceblue;
+}
+
+a:hover{
+    border: 1px black;
+    
+}
+a:hover{
+    border: 2px black;
+    font-weight: bold;
+}
+
+#start{
+    background-color: burlywood;
+    
+
+}
+
+#more{
+    background-color: cadetblue;
+    font-size: 0.8em;
+}
+
+
+
+.done_button{
+    width: 10vw;
+    background-color: cadetblue;
+    color:aliceblue;
+    border-radius: 5%;
+}
+
+
