@@ -45,9 +45,12 @@ function moveTo(character = maincharacter, area){
 }
 
 function sameFloor(character, elme){
-  FC = character.attr(floor)
+  FC = character.attr(floor)// 當前樓層，0，1，2
   FE = elme.attr(floor)
-  if (FC )
+  if (FC != FE){
+    moveTo(character, $(`left`+ FC))
+    moveTo(character, $(`left`+ FE))
+  }
 }
 
 
