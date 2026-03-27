@@ -62,7 +62,7 @@ function sameFloor(character, elme){
     moveTo($(`#left_${FC}`), $character)
     setTimeout(()=>{
       moveTo($(`#left_${FE}`), $character)  
-    },200)
+    },200)// 0.2s->200 ms
     
   }
 }
