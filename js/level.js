@@ -14,15 +14,15 @@ $(".room").on("click", function() {
   if($(".selcetedGuest").length){
     guestToRoom($(this))
   }else{
-    moveTo($(this))
+    moveTo($(this), $("#maincharacter"))
   }
 })
 
 // clike the interact_item
 $(".interact_item").on("click", function(){
-  sameFloor($("mainCharacter"), $(this))
-  moveTo($(this))
-  trolleyOP($(this))
+  sameFloor($("#mainCharacter"), $(this))
+  moveTo($(this),$("#mainCharacter"))
+  //trolleyOP($(this))
 })
 
 function guestToRoom($room){
@@ -30,43 +30,46 @@ function guestToRoom($room){
   let $guest = $("selectedGuest")
   sameFloor($guest, $room)
   let roomOff = room.Offset()
-  $guest.css{
-    left: (roomOff.left + $room.outerWidth/2) + "px"
+  $guest.css({
+    left: (roomOff.left + $room.outerWidth/2) + "px",
     top: (roomOff.top + $room.outerHeight/2) + "px"
-    } 
+    })
 }
+  ｝
 
-function moveTo(($area, $character = $("#maincharacter)){
+function moveTo($area, $character = $("#maincharacter")){
   let areaOff = $area.offset()
   let left, top           
   
-  if (area.hasClass("interact_area")){
+  if ($area.hasClass("interact_area")){
     left = areaOff.left + $area.outerWidth/2 - $character.outerWidth()/2
     top = areaOff.top + $area.outerHeight - $character.outerHeight() // same bottom
-  }else if(area.hasClass("interact_item")){
+  }else if($area.hasClass("interact_item")){
     left = areaOff.left + $area.outerWidth/2 - $character.outerWidth()/2
     top = areaOff.top + $area.outerHeight/2 - $character.outerHeight()/2
   }  
 
   $character.css({
-    left: left + "px"
-    top: top + "px"
+    left: left + "px", 
+    top: top + "px",
     transition: 'left 0.2s, top 0.2s'//////////
   })
+  
+
 }
 
 function sameFloor(character, elme){
   let FC = character.data("floor")
   let FE = elme.data("floor")
   if (FC !== FE){
-    moveTo($(`#left_${FC}`), $character)
+    moveTo($(`#lift_${FC}`), character)
     setTimeout(()=>{
-      moveTo($(`#left_${FE}`), $character)  
+      moveTo($(`#lift_${FE}`), character) 
     },200)// 0.2s->200 ms
+    $('#maincharacter').data('floor', FE);
     
   }
 }
-
 
 
 
