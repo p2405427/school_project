@@ -119,11 +119,13 @@ span{
     border: 1px solid black;
 }
 
-#maincharacter{
+#mainCharacter{
     width:40px;
     height:40px;
     border-radius: 50%;
     background-color:red;
+  position:absolute;
+  z-index:999;
     
 }
 
@@ -140,4 +142,3 @@ span{
     /* border: 2px solid black; */
     box-shadow: 0px 0px 10px;
 }
-
