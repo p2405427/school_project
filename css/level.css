@@ -119,6 +119,14 @@ span{
     border: 1px solid black;
 }
 
+#maincharacter{
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    background-color:red;
+    
+}
+
 .stop{
     position: absolute;
     bottom: 2vh;
