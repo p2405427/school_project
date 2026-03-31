@@ -90,7 +90,7 @@ span{
 }
 
 #ground{
-    margin-top: 20vh;
+    margin-top: 5vh;
     margin-bottom: 0%;
     height: 20vh;
     
@@ -110,7 +110,9 @@ span{
     justify-items: end; */
 
 }
-
+#lift_0{
+    margin-top: 5vh;
+}
 .g_item{
     height: 7.5vh;
     margin-right: 2vw;
@@ -121,14 +123,24 @@ span{
 
 #mainCharacter{
     width:40px;
-    height:40px;
-    border-radius: 50%;
+    height:100px;
     background-color:red;
-  position:absolute;
-  z-index:999;
+    position:absolute;
+    z-index:999;
+    
+}
+#trolley{
+    width:20px;
+    height:40px;
+    background-color:rgb(43, 0, 255);
+    position:absolute;
+    z-index:999;
     
 }
 
+.interact_item{
+    z-index:9999;
+}
 .stop{
     position: absolute;
     bottom: 2vh;
