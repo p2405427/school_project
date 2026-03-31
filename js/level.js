@@ -8,68 +8,88 @@ interact_item: 可拾取物件
 data-floor = 0, 1, 2
 */
 //
+const speed = 400
+console.log("access level.js!")
+console.log(`speed: ${speed}`)
+$("#mainCharacterandTrolley").css({
+    "left":"300px",
+    "bottom":"250px"
+})
 
 // clike the room
 $(".room").on("click", function() {
+  console.log(`click ${ $(this)[0].id }`)
   if($(".selcetedGuest").length){
     guestToRoom($(this))
   }else{
-    moveTo($(this), $("#maincharacter"))
+    moveTo($(this), $("#mainCharacter"))
   }
 })
 
 // clike the interact_item
 $(".interact_item").on("click", function(){
-  sameFloor($("#mainCharacter"), $(this))
+  console.log(`click ${ $(this)[0].id }`)
   moveTo($(this),$("#mainCharacter"))
   //trolleyOP($(this))
 })
 
 function guestToRoom($room){
+  
   if(!$room.data("active")){
-  let $guest = $("selectedGuest")
-  sameFloor($guest, $room)
-  let roomOff = room.Offset()
-  $guest.css({
-    left: (roomOff.left + $room.outerWidth/2) + "px",
-    top: (roomOff.top + $room.outerHeight/2) + "px"
-    })
-}
-  ｝
-
-function moveTo($area, $character = $("#maincharacter")){
-  let areaOff = $area.offset()
-  let left, top           
+  let $guest = $(".selectedGuest")
   
-  if ($area.hasClass("interact_area")){
-    left = areaOff.left + $area.outerWidth/2 - $character.outerWidth()/2
-    top = areaOff.top + $area.outerHeight - $character.outerHeight() // same bottom
-  }else if($area.hasClass("interact_item")){
-    left = areaOff.left + $area.outerWidth/2 - $character.outerWidth()/2
-    top = areaOff.top + $area.outerHeight/2 - $character.outerHeight()/2
-  }  
+}
+}
+function calculateAndMove($target, $character, speed = 500) {
+  return new Promise((resolve) => {
+    
+    const areaOff = $target.offset();
+    const charOff = $character.offset();
 
-  $character.css({
-    left: left + "px", 
-    top: top + "px",
-    transition: 'left 0.2s, top 0.2s'//////////
-  })
-  
+    // 1. 取得目標座標 (統一腳底對齊)
+    const targetX = areaOff.left + $target.outerWidth() / 2 - $character.outerWidth() / 2;
+    let targetY = areaOff.top + $target.outerHeight()/2 - $character.outerHeight();
 
+    const deltaX = targetX - charOff.left;
+    const deltaY = targetY - charOff.top;
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    
+    const duration = Math.max(distance / speed, 0.1);
+
+    if($target.hasClass("interact_item")){
+      console.log("interact_item set y")
+      targetY = areaOff.top + $target.outerHeight()/2 - 2*$character.outerHeight();
+    }
+    $character.css({
+      left: targetX + "px",
+      top: targetY +  "px",
+      transition: `all ${duration}s linear`
+    });
+
+    setTimeout(resolve, duration * 1000);
+  });
 }
 
-function sameFloor(character, elme){
-  let FC = character.data("floor")
-  let FE = elme.data("floor")
-  if (FC !== FE){
-    moveTo($(`#lift_${FC}`), character)
-    setTimeout(()=>{
-      moveTo($(`#lift_${FE}`), character) 
-    },200)// 0.2s->200 ms
-    $('#maincharacter').data('floor', FE);
+async function moveTo($destination, $character = $("#mainCharacter")) {
+  const currentFloor = $character.data("floor");
+  const targetFloor = $destination.data("floor");
+
+
+  if (currentFloor !== undefined && targetFloor !== undefined && currentFloor !== targetFloor) {
+  
+    await calculateAndMove($(`#lift_${currentFloor}`), $character, speed);
+    await calculateAndMove($(`#lift_${targetFloor}`), $character, speed);
+    
+    $character.data("floor", targetFloor);
     
   }
+
+
+  await calculateAndMove($destination, $character, speed);
+  
 }
+
+
 
 
 
