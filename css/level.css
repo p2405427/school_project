@@ -2,10 +2,17 @@ body {
     /* background-color: rgba(0, 0, 0, 0.169); */
     background-color: bisque;
     font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 100vh;
     user-select: none;
     overflow: hidden;
+    
+}
+
+*{
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-origin: border-box;
+    background-size: auto 100%;
 }
 
 #data_list {
@@ -155,7 +162,6 @@ span {
     width: 15vw;
     margin-right: 5vw;
     background-image: url("../img/room.jpg");
-    background-size: cover;
 }
 
 .active {
@@ -200,7 +206,7 @@ span {
 }
 
 #playerGroup{
-    width: 15vh;
+    width: 7vw;
     height: 20vh;
     position: absolute;
     z-index: 99;
@@ -211,8 +217,8 @@ span {
 }
 
 #mainCharacter {
-    width: 5vh;
-    height: 10vh;
+    width: 3vw;
+    height: 9vh;
     
     position: absolute;
     left: 0;
@@ -221,8 +227,8 @@ span {
     background-color: red;
 }
 #trolley{
-    width:7vh;
-    height:7vh;
+    width:3vw;
+    height:5vh;
     background-color:rgba(43, 0, 255, 0.104);
     position:absolute;
     right: 0;
@@ -257,8 +263,8 @@ span {
 
 
 .food{
-    background-image: url("../img/food.jpg");
-    background-size: 100% auto;
+    background-image: url("../img/food.png");
+    
 }
 .trash{
     background-image: url("../img/trash.jpg");

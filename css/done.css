@@ -1,12 +1,26 @@
+.flexBox_text{
+    /* display: flex; */
+    width: 60%;
+    font-size: 0.7em;
+}
+
 .result{
     border-bottom: 1px solid #000;
     margin: 5%;
     padding: 2%
 }
-
+span{
+    color:rgb(39, 103, 212);
+}
+.result:hover{
+    font-weight: bold;
+}
 .done_button{
-    width: 10vw;
+    width: 15vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
     background-color: cadetblue;
     color:aliceblue;
+    text-align: center;
     border-radius: 5%;
 }

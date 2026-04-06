@@ -3,6 +3,7 @@ body{
     background-color: blanchedalmond;
     user-select: none;
     overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .strongTitle{

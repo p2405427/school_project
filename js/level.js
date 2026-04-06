@@ -26,7 +26,7 @@ class Trolley {
     if (this.hasSpace()) {
       const index = this.items.indexOf(null)
       this.items[index] = item
-      console.log(`Added ${item.name} to trolley at slot ${index}`)
+      //console.log(`Added ${item.name} to trolley at slot ${index}`)
       this.updateUI(index, item, "add")
     }
   }
@@ -101,10 +101,15 @@ function addMoney(amount) {
   earn += amount
   $earn.text(earn)
 }
-// console.log($countGuest)//0
+console.log($countGuest)//0
 
 
 $(document).ready(async function () {
+  window.alreadyFinished = false
+  localStorage.removeItem("earn")
+  localStorage.removeItem("guestCount")
+  localStorage.removeItem("previous")
+  localStorage.removeItem("next")
 
   const currentPos = $playerGroup.offset()
   $playerGroup.css({
@@ -120,6 +125,7 @@ $(document).ready(async function () {
   await openingAnimation()
   console.log("..........")
   apperGuest()
+
 
 })
 
@@ -145,6 +151,44 @@ function openingAnimation() {
       time--
     }, 1000)
   })
+}
+
+async function finish() {
+  if (window.alreadyFinished) return
+  window.alreadyFinished = true
+
+   await new Promise((resolve) => {
+    let time = 1
+    $cover.fadeIn(speed)
+    $coverContent.text("Level Complete!")
+    const timer = setInterval(() => {
+      
+      $coverContent.removeClass("animate-pulse")
+      $coverContent.addClass("animate-pulse")
+
+      if (time < 0) {
+        clearInterval(timer)
+        $cover.fadeOut(speed, () => {
+          resolve()
+        })
+      }
+      time--
+    }, 500)
+  })
+  
+
+  let totalSaving = parseInt(localStorage.getItem("totalSaving")) || 0;
+  totalSaving += earn
+  localStorage.setItem("totalSaving", totalSaving);
+
+  const level = parseInt($("#level").text())
+  localStorage.setItem("earn", earn)
+  localStorage.setItem("guestCount", guestCount)
+  localStorage.setItem("previous", `./level/${level}_level.html`)
+  localStorage.setItem("next", `./level/${level + 1}_level.html`)
+
+  // spendtime
+  window.location.href = "../done.html"
 }
 
 function apperGuest() {
@@ -228,7 +272,7 @@ $(document).on("click", ".guest", function (e) {
 //// clike the room
 $(".room").on("click", async function () {
   const $room = $(this)
-  console.log(`click ${$room[0].id}`)
+  //console.log(`click ${$room[0].id}`)
   if ($(".selectedGuest").length) {
     const $selected = $(".selectedGuest")
     await guestToRoom($room, $selected)
@@ -239,7 +283,7 @@ $(".room").on("click", async function () {
 })
 //// clike the interact_item
 $(".interact_item").on("click", async function () {
-  console.log(`click ${$(this)[0].id}`)
+  //console.log(`click ${$(this)[0].id}`)
   await moveTo($(this), $playerGroup)
   await interactWithGroundItem($(this))
 })
@@ -273,7 +317,7 @@ async function guestToRoom($room, $guest) {
 
   } catch (error) {
     // e.g. moveTo is Rejected）
-    console.log("Move Cancel", error)
+    //console.log("Move Cancel", error)
     $room.removeClass("active")
     $guest.addClass("selectedGuest")
   }
@@ -379,6 +423,9 @@ function interactWithGroundItem($item) {
     case "CLEAN":
       if (myTrolley.hasGroup("waste")) {
         myTrolley.remove({group: "waste"})
+        if (!window.alreadyFinished && isFinish()) {
+            finish(); 
+        }
       }
       break
 
@@ -394,6 +441,18 @@ function interactWithGroundItem($item) {
   }
 }
 
+function isFinish() {
+  if(myTrolley.hasGroup("waste")) return false
+  
+  if($(".room").hasClass("need-clean") || $(".room").hasClass("active")){
+    return false
+  }
+
+  if(guestCount < MAX_GUESTS) return false
+  
+  console.log("finished!")
+  return true
+}
 function getActionType($item) {
     if ($item.hasClass("get")) return "PICKUP"
     if ($item.hasClass("rubbishbin")) return "CLEAN"
@@ -409,8 +468,6 @@ async function serve($room) {
   if(!$room.hasClass("active")){
     return 
   }
-
-  
 
   const guestObj = $room.data("guestObj")
   console.log("Serving guest with request:", guestObj.request)
