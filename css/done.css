@@ -1,0 +1,12 @@
+.result{
+    border-bottom: 1px solid #000;
+    margin: 5%;
+    padding: 2%
+}
+
+.done_button{
+    width: 10vw;
+    background-color: cadetblue;
+    color:aliceblue;
+    border-radius: 5%;
+}

@@ -51,20 +51,7 @@ body{
     flex:none;
 
 }
-/*  */
-.flexBox_level{
-    flex: none;
-    width: 15%;
-    height: 15%;
-    margin-top: 5%;
-    margin-left: 7%;
-    margin-right: 7%;
-    background-color: rgb(142, 197, 199);
-    text-align: center;
-    border-radius: 5%;
 
-}
-/*  */
 .role{
     object-fit:contain;
     max-width: 30vw; height: auto;
@@ -75,11 +62,13 @@ body{
     padding: 2%;
 }
 
-.result{
-    border-bottom: 1px solid #000;
-    margin: 5%;
-    padding: 2%
+.button:hover{
+    font-weight: bold;
+    color:black;
+    text-shadow: 0px 0px 5px white;
 }
+
+
 .data{
     text-align: end;
 }
@@ -90,33 +79,13 @@ a{
     height: 100%;
 }
 
-a:hover{
-    border: 1px black;
-    
-}
-a:hover{
-    border: 2px black;
-    font-weight: bold;
-}
-
-#start{
-    background-color: burlywood;
-    
-
-}
-
-#more{
-    background-color: cadetblue;
-    font-size: 0.8em;
-}
 
 
 
-.done_button{
-    width: 10vw;
-    background-color: cadetblue;
-    color:aliceblue;
-    border-radius: 5%;
-}
+
+
+
+
+
 
 
