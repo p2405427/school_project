@@ -154,16 +154,16 @@ span {
     flex: none;
     width: 15vw;
     margin-right: 5vw;
-    background-image: url("../../img/room.jpg");
+    background-image: url("../img/room.jpg");
     background-size: cover;
 }
 
 .active {
-    background-image: url("../../img/activeRoom.jpg");
+    background-image: url("../img/activeRoom.jpg");
 }
 
 .need-clean {
-    background-image: url("../../img/needClean.jpg");
+    background-image: url("../img/needClean.jpg");
 }
 #ground {
     margin-top: 5vh;
@@ -257,11 +257,11 @@ span {
 
 
 .food{
-    background-image: url("../../img/food.jpg");
+    background-image: url("../img/food.jpg");
     background-size: 100% auto;
 }
 .trash{
-    background-image: url("../../img/trash.jpg");
+    background-image: url("../img/trash.jpg");
     background-size: 100% auto;
 }
 
