@@ -6,52 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Name #2</title>
     <link rel="stylesheet" href="../../css/level.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
     <div id="data_list">
-        <div class="data_item">level<span id="level">  2</span></div>
-        <div class="data_item">$<span id="earn"></span></div>
+        <div class="data_item">level <span id="level">2</span></div>
+        <div class="data_item">$<span id="earn">0</span></div>
         <div class="data_item"><img id="customerNum" src="../../img\customerNum.jpg" alt="guests number">
-            <span id="n_guest"></span>/8</div>
+            <span id="guestCount">0</span>/<span id="guestMax">6</span>
+        </div>
         <div class="data_item">played time:<span id="time"></span>s</div>
     </div>
     <!-- <div style="height: 5vh;"></div> -->
+    <div id="cover">
+        <div id="coverContent"></div>
+    </div>
     <div id="main">
         <div id="upstairs">
             <div class="flexContiner floor" id="floor2">
-                <div class="flexBox up_item lift" id="lift_2">this is lift_2</div>
+                <div class="flexBox up_item lift" id="lift_2" data-floor="2"></div>
                 <div class="flexBox flexContiner room_section">
-                    <div class="room up_item" id="room_3">this is room_3</div>
-                    <div class="room up_item" id="room_4">this is room_4</div>
+                    <div class="room up_item interact_area" id="room_3" data-floor="2"></div>
+                    <div class="room up_item interact_area" id="room_4" data-floor="2"></div>
                 </div>
             </div>
+
             <div class="flexContiner floor" id="floor1">
-                <div class="flexBox up_item lift" id="lift_1">this is lift_1</div>
+                <div class="flexBox up_item lift" id="lift_1" data-floor="1"></div>
                 <div class="flexBox flexContiner room_section">
-                    <div class="room up_item" id="room_1">this is room_1</div>
-                    <div class="room up_item" id="room_2">this is room_2</div>
+                    <div class="room up_item interact_area" id="room_1" data-floor="1"></div>
+                    <div class="room up_item interact_area" id="room_2" data-floor="1"></div>
                 </div>
             </div>
+            <div class="flexBox up_item lift" id="lift_0" data-floor="0"></div>
             <div class="flexContiner" id="ground">
+                <div class="flexBox flexContiner" id="waitting" data-floor="0"></div>
                 <div class="flexBox" id="object_section">
                     <div class="flexBox flexContiner">
-                        <div class="flexBox g_item" id="food">this is food</div>
-                        <div class="flexBox g_item" id="bin_recycle">this is bin_recycle</div>
-                        <div class="flexBox g_item" id="bin_rubbish">this is bin_rubbish</div>
-                        
+                        <div id="food" class="flexBox g_item interact_item food get"
+                         data-floor="0" data-name="food" data-group="supply">
+                            </div>
+
+                        <div class="flexBox g_item interact_item rubbishbin" id="bin_rubbish" 
+                        data-floor="0">
+                            bin_rubbish</div>
+
+                        <div class="flexBox g_item interact_item recycle" id="bin_recycle" 
+                        data-floor="0">
+                            bin_recycle</div>
                     </div>
                     <div class="flexBox flexContiner">
-                        <div class="flexBox g_item">this is table</div>
-                        <div class="flexBox g_item">this is table</div>
-                        <div class="flexBox g_item">this is table</div>
+                        <div class="flexBox g_item">table</div>
+                        <div class="flexBox g_item">table</div>
+                        <div class="flexBox g_item">table</div>
                     </div>
                 </div>
-                <div class="flexBox " id="waitting">this is waitting area</div>
             </div>
-            <div class="stop">Stop</div>
-
+        <div id="playerGroup" data-floor="0" data-isMoving="false">
+            <div id="mainCharacter"></div>
+            <div id = "trolley">
+                <div id="slot_0" class="layer_0 empty">
+                    <div class="food trolley_item" data-name="food" data-slot="0" data-group="supply"></div>
+                    <div class="trash trolley_item" data-name="trash" data-slot="0" data-group="waste"></div>
+                </div>
+                <div id="slot_1" class="layer_1 empty">
+                    <div class="food trolley_item" data-name="food" data-slot="1" data-group="supply"></div>
+                    <div class="trash trolley_item" data-name="trash" data-slot="1" data-group="waste"></div>
+                </div>
+            </div>
         </div>
+        <div class="stop">Stop</div>
+
+    </div>
+    <script src="../../js/level.js"></script>
 </body>
 
 </html>
