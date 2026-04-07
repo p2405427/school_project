@@ -40,13 +40,13 @@ body{
 .flexBox_img{
     flex:none;
     width: 30%;
-    /* margin-right: auto;
-    margin-left: auto; */
+    
     align-items:start;
     text-align: center;/*inline*/
 }
 .flexBox_text{
     width:45%;
+    margin-left: 4vw;
     text-align: start;
     flex:none;
 
@@ -78,7 +78,26 @@ a{
     color:aliceblue;
     height: 100%;
 }
-
+@media (max-width:1200px) {
+    body{
+        font-size: 40px;
+    }
+}
+@media (max-width:1250px) {
+    body{
+        font-size: 35px;
+    }
+}
+@media (max-width:850px) {
+    body{
+        font-size: 30px;
+    }
+}
+@media (max-width:600px) {
+    body{
+        font-size: 24px;
+    }
+}
 
 
 

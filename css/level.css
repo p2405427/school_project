@@ -18,6 +18,8 @@ body {
 #data_list {
     top: 0;
     left: 0;
+    padding-left: auto;
+    padding-right: auto;
     height: 5vh;
     width: 100vw;
     position: fixed;
@@ -31,7 +33,9 @@ body {
 span {
     color: black;
 }
-
+.small {
+    display: none;
+}
 .data_item {
     flex: none;
     width: 25%;
@@ -113,6 +117,11 @@ span {
     padding-right: 5vw;
     border: 1vw dashed pink;
     background-color: bisque;
+    
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 
 }
 
@@ -162,6 +171,7 @@ span {
     width: 15vw;
     margin-right: 5vw;
     background-image: url("../img/room.jpg");
+    background-size: contain;
 }
 
 .active {
@@ -205,9 +215,16 @@ span {
     border: 1px solid black;
 }
 
+.guest{
+    width: 7vw;
+    height: 9vh;
+    background-color: rgb(255, 255, 255);
+    margin: 3%;
+}
+
 #playerGroup{
     width: 7vw;
-    height: 20vh;
+    height: 10vh;
     position: absolute;
     z-index: 99;
     left: 25%;
@@ -217,9 +234,10 @@ span {
 }
 
 #mainCharacter {
-    width: 3vw;
-    height: 9vh;
-    
+    width: 4vw;
+    height: 10vh;
+    background-image: url("../img/mainCharacter.png");
+    background-size: auto 100%;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -228,7 +246,7 @@ span {
 }
 #trolley{
     width:3vw;
-    height:5vh;
+    height:7vh;
     background-color:rgba(43, 0, 255, 0.104);
     position:absolute;
     right: 0;
@@ -260,11 +278,18 @@ span {
 .hasTrash .trash {
     display: block !important;
 }
-
+.interact_item{
+    background-color: transparent;
+    border-color: transparent;
+}
 
 .food{
     background-image: url("../img/food.png");
     
+}
+.rubbishbin{
+    background-image: url("../img/rubbishBin.png");
+    background-size: contain;
 }
 .trash{
     background-image: url("../img/trash.jpg");
@@ -272,9 +297,11 @@ span {
 }
 
 .guest{
-    font-size: 2em;
-
+    background-image: url("../img/guest.png");
+    background-size: contain;
 }
+
+
 .selectedGuest {
     filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.8));
     transition: filter 0.3s ease;
@@ -298,4 +325,130 @@ span {
     background-color: rgb(186, 150, 102);
     /* border: 2px solid black; */
     box-shadow: 0px 0px 10px;
+}
+@media (max-width:1920px) {
+    body{
+        font-size: 25px;
+    }
+}
+@media (max-width:1250px) {
+    body{
+        font-size: 25px;
+    }
+}
+@media (max-width:850px) {
+    body{
+        font-size: 20px;
+    }
+
+    #playerGroup{
+    width: 7vw;
+    height: 10vh;
+    }
+
+    .guest{
+    height: 10vh;
+    }
+
+    .small{
+        display: block;
+    }
+    .big{
+        display: none;
+    }
+}
+@media (max-width:700px) {
+    #playerGroup{
+        width: 8vw;
+        height: 8vh;
+    }
+    #mainCharacter {
+        width: 4vw;
+        height: 10vh;
+    }
+    .guest{
+        height: 10vh;
+    }
+
+}
+@media (max-width:600px) {
+    body{
+        font-size: 18px;
+    }
+    #playerGroup{
+        width: 12vw;
+        height: 10vh;
+    }
+    
+    #mainCharacter {
+        width: 5vw;
+        height: 10vh;
+    }
+
+    #trolley{
+        width:5vw;   
+    }
+
+    .guest{
+        height: 10vh;
+    }
+}
+@media (max-width:500px) {
+    .lift{
+        /* width: 15vw;
+        height: 25vh; */
+        margin-right: 5vw;
+    }
+    .room{
+        margin-top: auto;
+        /* height: 15vh;
+        width: 20vw; */
+    }
+
+    #object_section {
+        margin-left: 5vw;
+        align-items: flex-end;
+    }
+    .g_item{    
+        height: 3vh;
+        width: 8vw;
+    }
+    #playerGroup{
+        width: 12vw;
+        height: 12vh;
+    }
+    
+    #mainCharacter {
+        width: 5vw;
+        height: 10vh;
+    }
+
+    #trolley{
+        width:5vw;
+        height:5vh;   
+    }
+
+    .guest{
+        height: 10vh;
+    }
+}
+@media (max-width:400px) {
+    #playerGroup{
+        width: 12vw;
+        height: 10vh;
+    }
+    
+    #mainCharacter {
+        width: 5vw;
+        height: 9vh;
+    }
+
+    #trolley{
+        width:5vw;
+        height:5vh;   
+    }
+
+    .guest{
+        height: 10vh;
+    }
 }

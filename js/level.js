@@ -96,12 +96,24 @@ const MAX_GUESTS = parseInt($("#guestMax").text())
 let $countGuest = $("#guestCount")
 
 let earn = 0
+let score = 0
 const $earn = $("#earn")
+const $score = $("#score")
+let hygienic = true
+
 function addMoney(amount) {
   earn += amount
   $earn.text(earn)
 }
-console.log($countGuest)//0
+
+function change_score(amount, op = "add") {
+  if(op === "add"){
+    score += amount
+  } else if(op === "sub"){
+    score -= amount
+  }
+  $score.text(score)
+}
 
 
 $(document).ready(async function () {
@@ -211,7 +223,7 @@ function spawnGuest() {
   const guestId = `guest_${Date.now()}`
   const guestObj = new Guest(guestId)
   const $guestElem = $(`
-    <div id="${guestId}" class="guest interact_area" data-floor="0">🧑</div>
+    <div id="${guestId}" class="guest interact_area" data-floor="0"></div>
   `)
   $guestElem.data("guestObj", guestObj)
   $guestElem.data("isMoving", false)
@@ -245,9 +257,18 @@ class Guest {
       if (act.time) {
         await new Promise(resolve => setTimeout(resolve, act.time))
       } else {
+        const startTime = Date.now()
+
         await new Promise(resolve => {
           this.resolveService = resolve
         })
+
+        const spentTime = Math.floor((Date.now() - startTime) / 1000)
+        if (spentTime < 1) {
+          change_score(80)
+        } else if (spentTime < 3) {
+          change_score(30)
+        }
       }
     }
     this.room.css("background-image", "url('../../img/room.jpg')");
@@ -474,6 +495,13 @@ async function serve($room) {
   switch (guestObj.request) {
     case "food":
       if (myTrolley.hasItem("food")) {
+        if(myTrolley.hasGroup("waste")){
+          hygienic = false
+          change_score(20, "sub")
+        }else{
+          hygienic = true
+        }
+
         myTrolley.remove({name: "food"})
         guestObj.resolveService()
       } 
@@ -484,6 +512,7 @@ async function serve($room) {
         guestObj.$element.remove(); 
       }
       addMoney(100)
+      change_score(100)
       $room.removeData("guestObj"); 
       $room.removeClass("active"); 
       $room.addClass("need-clean");
