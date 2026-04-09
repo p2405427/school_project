@@ -11,6 +11,7 @@ const next = localStorage.getItem("next")
 const guestCount = localStorage.getItem("guestCount")
 const earn = localStorage.getItem("earn")
 // const time = localStorage.getItem("time")  
+console.log(totalSaving, previous, next, guestCount, earn)
 
 $totalSaving.text(totalSaving)
 $retry.attr("href", previous)
