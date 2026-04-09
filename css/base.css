@@ -1,12 +1,12 @@
 body{
-    font-size: 45px;
+    font-size: 40px;
     background-color: blanchedalmond;
     user-select: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .strongTitle{
-    font-size: 2em;
+    font-size: 1.5em;
     text-shadow: 2px 2px 2px black;
 
 }

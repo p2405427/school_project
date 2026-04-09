@@ -75,8 +75,7 @@ class Trolley {
         group: "waste"
       }
       this.add(item)
-      $room.removeClass("need-clean")
-      $room.removeClass("active")
+      $room.attr("data-roomStatus", "available")
       $room.css("background-image", "url('../../img/room.jpg')");
     }
 }
@@ -280,12 +279,16 @@ $(document).on("click", ".guest", function (e) {
   e.stopPropagation()
   const $this = $(this)
   console.log(`click guest ID: ${this.id}`)
+  
+  $(".room").removeClass("highlight-hint")
 
   const hasClass = $this.hasClass("selectedGuest")
   $(".guest").removeClass("selectedGuest")
 
   if (!hasClass) {
     $this.addClass("selectedGuest")
+    $(".room[data-roomStatus='available']").addClass("highlight-hint")
+
   }
 })
 
@@ -295,6 +298,8 @@ $(".room").on("click", async function () {
   const $room = $(this)
   //console.log(`click ${$room[0].id}`)
   if ($(".selectedGuest").length) {
+    $(".room").removeClass("highlight-hint")
+    $room.attr("data-roomStatus", "active")
     const $selected = $(".selectedGuest")
     await guestToRoom($room, $selected)
   } else {
@@ -310,8 +315,9 @@ $(".interact_item").on("click", async function () {
 })
 
 async function guestToRoom($room, $guest) {
-  if ($room.hasClass("active") || $room.hasClass("need-clean") || $guest.data("isMoving")) return
+  if ($room.hasClass("available")) return
 
+  $room.removeClass("available")
   $room.addClass("active")
   $guest.removeClass("selectedGuest")
 
@@ -465,7 +471,7 @@ function interactWithGroundItem($item) {
 function isFinish() {
   if(myTrolley.hasGroup("waste")) return false
   
-  if($(".room").hasClass("need-clean") || $(".room").hasClass("active")){
+  if(($(".room[data-roomStatus='need-clean']").length || $(".room[data-roomStatus='active']").length)){
     return false
   }
 
@@ -482,11 +488,11 @@ function getActionType($item) {
 }
 
 async function serve($room) {
-  if($room.hasClass("need-clean")){
+  if($room.attr("data-roomStatus") === "need-clean"){
     myTrolley.clear($room)
     return
   }
-  if(!$room.hasClass("active")){
+  if(!$room.attr("data-roomStatus") === "active"){
     return 
   }
 
@@ -514,8 +520,7 @@ async function serve($room) {
       addMoney(100)
       change_score(100)
       $room.removeData("guestObj"); 
-      $room.removeClass("active"); 
-      $room.addClass("need-clean");
+      $room.attr("data-roomStatus", "need-clean")
       $room.css("background-image", "url('../../img/needClean.jpg')");
 
       myTrolley.clear($room)
