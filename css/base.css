@@ -28,13 +28,13 @@ body{
     padding: 2%;
 }
 
-.flexContiner{
+.flexContainer{
     width: 100vw;
     display: flex;
     /* margin-top: 5vh; */
-    justify-content: center;
-    align-items: center;
-    flex-wrap:wrap;
+    flex-direction: row; /* 強制橫向排隊 */
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .flexBox_img{
@@ -47,6 +47,7 @@ body{
 .flexBox_text{
     width:45%;
     margin-left: 4vw;
+    
     text-align: start;
     flex:none;
 

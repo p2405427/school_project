@@ -503,7 +503,7 @@ async function serve($room) {
       if (myTrolley.hasItem("food")) {
         if(myTrolley.hasGroup("waste")){
           hygienic = false
-          change_score(20, "sub")
+          change_score(30, "sub")
         }else{
           hygienic = true
         }

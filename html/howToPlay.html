@@ -7,6 +7,7 @@
     <title>Game Name[How to Play]</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/howToPlay.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -26,39 +27,199 @@
     </div> -->
     <div id="page_1" class="basic show">
         <p class = "p_title">Welcome to Game Name!</p>
-        <p>In this game, you will take on the role of a restaurant manager, responsible for serving customers and managing your restaurant efficiently
-        <p>Tab next page to see the instructions to get you started</p>
-        <div class="flexContiner button_container">
-            <div class="p_button flexBox_level"></div>
+        <p>In this game, you will take on the role of a restaurant manager, responsible for serving customers and managing your restaurant efficiently</p>
+        <span class = "p_title_2">Main process</span>
+        <li>take to guest to room</li>
+        <li>serve the guest</li>
+        <li>guest check out</li>
+        <li>clean the room</li>
+        <li>remove the trash to the rubbish bin</li>
+        <p>Tab next page(>) to see the instructions to get you started</p>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"></div>
             <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
-            <div class="p_button flexBox_level">></div>
+            <div class="p_button next">></div>
         </div>  
     </div>
 
+    <!-- guest to room-->
     <div id="page_2" class="basic hide">
         <p class = "p_title">take the guest to the room</p>
         <p>When the guest arrives, <span class="keypoint">click on them</span>, and click the <span class="keypoint">available room(withyellow highlight)</span>, than they will be taken to the room.</p>
         <!-- <p class = "Diagram"><img src="../images/guest_to_room.png" alt="guest_to_room"></p> -->
-        <div class="flexContiner button_container">
-            <div class="p_button flexBox_level"><</div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
             <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
-            <div class="p_button flexBox_level">></div>
+            <div class="p_button   next">></div>
         </div>  
     </div>
 
+    <!-- room's bubble:  order-->
     <div id="page_3" class="basic hide">
-        <p class = "p_title">take the guest to the room</p>
-        <p></p>
-        <p></p>
-        <div class="flexContiner button_container">
-            <div class="p_button flexBox_level"><</div>
+        <p class = "p_title">Serve the Customers</p>
+        <!-- <p>When a bubble appears indicating the room's location, please <span class="keypoint">bring the corresponding supplies or reserve space with your trolley</span>, then <span class="keypoint">click to proceed to the room</span> to interact</span>.</p> -->
+        <p class="p_title_2">room's bubble: order</p>
+        <div class = "Diagram flexContainer">
+            <div class="flexBox_img"><img class="smallDiagram" src="../img/order.jpg" alt="order bubble"></div>
+            
+            <div class="flexBox_text">
+            <!-- <p> <span class="p_title_2">order bubble:</span></p> -->
+            <p>bring the corresponding supplies and click on the bubble to proceed</p>
+            <p class = "note">Please note that if there is trash in the trolley when bringing food to guests, 30 points will be deducted.</p>
+            </div>
+        </div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
             <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
-            <div class="p_button flexBox_level">></div>
+            <div class="p_button   next">></div>
         </div>  
     </div>
 
-</div>
-    
+    <!-- room's bubble:  checkout-->
+    <div id="page_4" class="basic hide">
+        <p class = "p_title">Serve the Customers</p>
+        <!-- <p>When a bubble appears indicating the room's location, please <span class="keypoint">bring the corresponding supplies or reserve space with your trolley</span>, then <span class="keypoint">click to proceed to the room</span> to interact</span>.</p> -->
+        <p class="p_title_2">room's bubble: checkout</p>
+        <div class = "Diagram flexContainer">
+            <div class="flexBox_img"><img class="smallDiagram" src="../img/checkout.jpg" alt="checkout bubble"></div>
+            
+            <div class="flexBox_text">
+            <!-- <p> <span class="p_title_2">checkout bubble</span></p> -->
+            <p>click on the bubble to proceed, to earn points and money.</p>
+            <p>when your trolley has space, it will automatically finish the cleaning.</p>
+            </div>
+        </div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button   next">></div>
+        </div>  
+    </div>
+
+    <!-- room's bubble:  need clean -->
+    <div id="page_5" class="basic hide">
+        <p class = "p_title">Serve the Customers</p>
+        <!-- <p>When a bubble appears indicating the room's location, please <span class="keypoint">bring the corresponding supplies or reserve space with your trolley</span>, then <span class="keypoint">click to proceed to the room</span> to interact</span>.</p> -->
+        <p class="p_title_2">room's bubble: need clean</p>
+        <div class = "Diagram flexContainer">
+            <div class="flexBox_img"><img class="smallDiagram" src="../img/needClean.jpg" alt="clean bubble"></div>
+            
+            <div class="flexBox_text">
+            <!-- <p> <span class="p_title_2">clean bubble</span></p> -->
+            <p>click on the bubble to proceed.</p>
+            <p>when your trolley has space, it will automatically finish the cleaning.</p>
+            <p>after cleaning, the room will be ready for the next customer.</p>
+            </div>
+        </div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button   next">></div>
+        </div>  
+    </div>
+
+    <!-- interactive items: supplies -->
+    <div id="page_6" class="basic hide">
+        <p class = "p_title">Working with the Trolley</p>
+        <p>There are several interactive items to add or remove from your trolley.</p>
+        <p class="p_title_2">interactive items: Supplies</p>
+        <div class = "Diagram flexContainer">
+            <div class="flexBox_img"><img class="smallDiagram" src="../img/food.png" alt="food item"></div>
+            
+            <div class="flexBox_text">
+            <!-- <p> <span class="p_title_2">Supply</span></p> -->
+            <p>click on the item to add it to your trolley.</p>
+            <p>when your trolley has space, it will be added automatically.</p>
+            </div>
+        </div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button   next">></div>
+        </div>  
+    </div>
+
+    <!-- interactive items: rubbishbin -->
+    <div id="page_7" class="basic hide">
+        <p class = "p_title">Working with the Trolley</p>
+        <p>There are several interactive items to add or remove from your trolley.</p>
+        <p class="p_title_2">interactive items: Rubbish Bin</p>
+        <div class = "Diagram flexContainer">
+            <div class="flexBox_img"><img class="smallDiagram" src="../img/rubbishBin.png" alt="rubbish bin"></div>
+            
+            <div class="flexBox_text">
+            <!-- <p> <span class="p_title_2">Rubbish Bin</span></p> -->
+            <p>after cleaning, trash will be added automatically.</p>
+            <p>click on the item to <span class="keypoint">remove the trash</span> from your trolley.</p>
+            </div>
+        </div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button  next">></div>
+        </div>  
+    </div>
+
+
+    </div>
+    <!-- interactive items: recyclebin -->
+    <div id="page_8" class="basic hide">
+        <p class = "p_title">Working with the Trolley</p>
+        <p>There are several interactive items to add or remove from your trolley.</p>
+        <p class="p_title_2">interactive items: Recycle Bin</p>
+        <div class = "Diagram flexContainer">
+            <div class="flexBox_img"><img class="smallDiagram" src="../img/recycleBin.png" alt="recycle bin"></div>
+            
+            <div class="flexBox_text">
+            <!-- <p> <span class="p_title_2">Recycle Bin</span></p> -->
+            <p>if your trolley has not enough space, click the recycle bin to remove the supply.</p>
+            <p>click on the item to <span class ="keypoint">remove the supply items </span>from your trolley.</p>
+            </div>
+        </div>
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button  next">></div>
+        </div>  
+    </div>
+
+    <!-- Points and Money -->
+    <div id="page_9" class="basic hide">
+        <p class = "p_title">Money and Score</p>
+        <p>after serving the guest, you will earn money and points.</p>
+        
+        <span class="p_title_2">How many?</span>
+        <li>Each guest checkout, you will earn <span class = "keypoint">$100</span> and <span class = "keypoint">100 points</span>.</li>
+        <li>Quickly fulfill guest requests, you will earn bonus points.</li>
+        <li> in 1 second: 80 points; in 3 second: 30 points</li>
+        <li class="note">However, if there is trash in your trolley when serving food to guests, 30 points will be deducted.</li>
+        <p>Try to earn as much money and points as possible!</p>
+
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button  next">></div>
+        </div>  
+    </div>
+
+    <div id="page_10" class="basic hide">
+        <p class = "p_title">Money and Score</p>
+        <p>after serving the guest, you will earn money and points.</p>
+        
+        <span class="p_title_2">What is the use?</span>
+        <li>Use the money to upgrade your speed, trolley, ect.</li>
+        <li>Use the points to unlock new levels and challenges.</li>
+
+        <div class="flexContainer button_container">
+            <div class="p_button previous"><</div>
+            <a class = "linkBox" href="./levelMap.html"><div class="p_button flexBox_level">start to play</div></a>
+            <div class="p_button  next"></div>
+        </div>  
+    </div>
+
+
+
+    <script src="../js/howToPlay.js"></script>
 </body>
 
 </html>
