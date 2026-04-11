@@ -31,8 +31,9 @@ body{
 .flexContainer{
     width: 100vw;
     display: flex;
+    height: auto;
     /* margin-top: 5vh; */
-    flex-direction: row; /* 強制橫向排隊 */
+    flex-direction: row;
     align-items: flex-start;
     flex-wrap: nowrap;
 }
