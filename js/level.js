@@ -147,6 +147,7 @@ function openingAnimation() {
 
     const timer = setInterval(() => {
       $coverContent.text(time <= 0 ? "GO!" : time)
+      //
 
       $coverContent.removeClass("animate-pulse")
       void $coverContent[0].offsetWidth

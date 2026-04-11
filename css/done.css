@@ -4,6 +4,20 @@
     font-size: 0.7em;
 }
 
+.button_container{
+    /* position: relative; */
+    position: absolute;
+    width: 100vw;
+    top: 90vh;
+    font-size: 0.7em;
+    background-color: transparent;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .result{
     border-bottom: 1px solid #000;
     margin: 5%;

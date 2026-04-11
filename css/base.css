@@ -1,6 +1,6 @@
 body{
     font-size: 40px;
-    background-color: blanchedalmond;
+    background-color: rgba(144, 237, 211, 0.473);
     user-select: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -16,7 +16,7 @@ body{
     left:0;
     height: 10%;
     position: static;
-    color:brown;
+    color:rgb(19, 46, 133);
     background-color: rgb(219, 173, 173);
     font-weight: bold;
     text-align: center;
