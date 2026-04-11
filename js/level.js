@@ -2,6 +2,39 @@
 
 
 */
+const Sound = {
+  bgm: new Audio("../../audio/background.mp3"),
+  click: new Audio("../../audio/click.mp3"),
+  start: new Audio("../../audio/game start.mp3"),
+  bell: new Audio("../../audio/bell.mp3"),
+  money: new Audio("../../audio/money.mp3"),
+  put: new Audio("../../audio/put_item.mp3"),
+  finish: new Audio("../../audio/finish.mp3"),
+  swimming: new Audio("../../audio/swimming.mp3"),
+  init() {
+      this.bgm.loop = true
+  },
+
+  play(name, time = null) {
+    const audio = this[name]
+    if (!audio) return
+
+    audio.currentTime = 0
+    audio.play()
+
+    if (time !== null) {
+        setTimeout(() => {
+            audio.pause()
+            audio.currentTime = 0;
+        }, time)
+    }
+},
+  stop(name) {
+      this[name].pause()
+      this[name].currentTime = 0
+
+  }
+}
 class Trolley {
   constructor($trolley, capacity) {
     this.$trolley = $trolley
@@ -24,6 +57,7 @@ class Trolley {
   add(item) {
     // only add to trolley array if there's space
     if (this.hasSpace()) {
+      Sound.play("put")
       const index = this.items.indexOf(null)
       this.items[index] = item
       //console.log(`Added ${item.name} to trolley at slot ${index}`)
@@ -45,9 +79,10 @@ class Trolley {
                         (criteria.group && item.group === criteria.group);
 
         if (isMatch) {
-            this.items[i] = null; 
-            this.updateUI(i, item, "remove"); 
-            return item;
+          Sound.play("put")
+          this.items[i] = null; 
+          this.updateUI(i, item, "remove"); 
+          return item;
         }
     }
     return null;
@@ -103,6 +138,7 @@ let hygienic = true
 function addMoney(amount) {
   earn += amount
   $earn.text(earn)
+  Sound.play("money")
 }
 
 function change_score(amount, op = "add") {
@@ -129,12 +165,20 @@ $(document).ready(async function () {
     "top": currentPos.top + "px",
     "z-index": 99
   })
-
+  await new Promise((resolve) => {
+    $("#start").on("click", function () {
+      Sound.play("swimming", 500);
+      
+      resolve(); 
+    });
+  })
   console.log("access level.js!")
   console.log(`speed: ${speed}`)
 
   await openingAnimation()
   console.log("..........")
+  Sound.init()
+  Sound.play("bgm")
   apperGuest()
 
 
@@ -146,8 +190,9 @@ function openingAnimation() {
     let time = 3
 
     const timer = setInterval(() => {
+      $coverContent.css("line-height", $cover.height()/2 + "px")
       $coverContent.text(time <= 0 ? "GO!" : time)
-      //
+      Sound.play("start")
 
       $coverContent.removeClass("animate-pulse")
       void $coverContent[0].offsetWidth
@@ -156,6 +201,7 @@ function openingAnimation() {
       if (time < 0) {
         clearInterval(timer)
         $cover.fadeOut(speed, () => {
+          Sound.stop("start")
           resolve()
         })
       }
@@ -168,9 +214,11 @@ function openingAnimation() {
 async function finish() {
   if (window.alreadyFinished) return
   window.alreadyFinished = true
+  Sound.stop("bgm")
+  Sound.play("finish")
 
    await new Promise((resolve) => {
-    let time = 1
+    let time = 2
     $cover.fadeIn(speed)
     $coverContent.text("Level Complete!")
     const timer = setInterval(() => {
@@ -185,7 +233,7 @@ async function finish() {
         })
       }
       time--
-    }, 500)
+    }, 1000)
   })
   
 
@@ -206,10 +254,12 @@ async function finish() {
 function apperGuest() {
   setTimeout(() => {
     spawnGuest()
+    Sound.play("bell")
 
     guestInterval = setInterval(() => {
       if (guestCount < MAX_GUESTS) {
         spawnGuest()
+        Sound.play("bell")
       } else {
         clearInterval(guestInterval)
       }
@@ -219,9 +269,11 @@ function apperGuest() {
 
 function spawnGuest() {
   if (guestCount >= MAX_GUESTS) return
-
+  const probability = Math.random()
+  const types = probability <0.3? "vip":"normal"
+   
   const guestId = `guest_${Date.now()}`
-  const guestObj = new Guest(guestId)
+  const guestObj = new Guest(guestId, types)
   const $guestElem = $(`
     <div id="${guestId}" class="guest interact_area" data-floor="0"></div>
   `)
@@ -235,12 +287,14 @@ function spawnGuest() {
 }
 
 class Guest {
-  constructor(id) {
+  constructor(id, type) {
     this.id = id
+    this.type = type
     this.room = null
     this.timer = null
     this.status = ""
     this.request = ""
+    this.bonus = type === "vip" ? 20 : 0
   }
   async startService() {
     const activity = [
@@ -271,6 +325,7 @@ class Guest {
         }
       }
     }
+    if (this.bonus) addMoney(this.bonus)
     this.room.css("background-image", "url('../../img/room.jpg')");
   }
 
@@ -304,6 +359,7 @@ $(".room").on("click", async function () {
     const $selected = $(".selectedGuest")
     await guestToRoom($room, $selected)
   } else {
+    Sound.play("click")
     await moveTo($room, $playerGroup)
     await serve($room)
   }
@@ -311,13 +367,18 @@ $(".room").on("click", async function () {
 //// clike the interact_item
 $(".interact_item").on("click", async function () {
   //console.log(`click ${$(this)[0].id}`)
+  Sound.play("click")
   await moveTo($(this), $playerGroup)
   await interactWithGroundItem($(this))
 })
 
 async function guestToRoom($room, $guest) {
-  if ($room.hasClass("available")) return
-
+  if ($room.hasClass("available")){ 
+    // 播放禁止的聲音
+    return
+  }
+  Sound.play("click")
+  Sound.play("swimming")
   $room.removeClass("available")
   $room.addClass("active")
   $guest.removeClass("selectedGuest")
@@ -333,6 +394,7 @@ async function guestToRoom($room, $guest) {
 
   try {
     await moveTo($room, $guest)
+    Sound.stop("swimming")
     $guest.hide()
 
     const guestObj = $guest.data("guestObj")

@@ -1,4 +1,13 @@
-
+body{
+    background-image: url("../assets/home_bg.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+#data{
+    background-color: rgb(222, 135, 135);
+    font-size: 0.8em;
+}
 
 #start{
     background-color: burlywood;
