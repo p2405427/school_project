@@ -1,0 +1,14 @@
++ level 1 (4)
+- 1 star: 400
+- 2 star: 430
+- 3 star: 500
+- 4 star: 560
+
++ level 2
+- 
+
+
+
+
+
+

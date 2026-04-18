@@ -32,6 +32,19 @@
 span{
     color:rgb(39, 103, 212);
 }
+
+#star{
+    margin-left: 4vw;
+    text-align: center;
+    align-items: center;
+}
+
+#star img{
+    height: 10vh;
+    width: auto;
+    
+}
+
 .result:hover{
     font-weight: bold;
 }

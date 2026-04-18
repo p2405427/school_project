@@ -9,10 +9,22 @@ body {
 }
 
 *{
+    /* background-size: contain;      
+    background-repeat: no-repeat;  
+    background-position: center;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center center; 
     background-origin: border-box;
-    background-size: auto 100%;
+    background-size: auto 100%; 
+    */
+    background-size: contain; 
+
+    /* 2. 確保圖片在容器中心，縮放時會從中心往內縮，而不是從左上角 */
+    background-position: center;
+
+    /* 3. 防止圖片因為容器太大而出現重複 */
+    background-repeat: no-repeat;
+    
 }
 
 #data_list {
@@ -180,7 +192,7 @@ span {
     flex: none;
     width: 15vw;
     margin-right: 5vw;
-    background-image: url("../img/room.jpg");
+    background-image: url("../img/room.svg");
     background-size: contain;
 }
 
@@ -197,11 +209,11 @@ span {
 
 
 .active {
-    background-image: url("../img/activeRoom.jpg");
+    background-image: url("../img/activeRoom.svg");
 }
 
 .need-clean {
-    background-image: url("../img/needClean.jpg");
+    background-image: url("../img/needClean.svg");
 }
 #ground {
     margin-top: 5vh;
@@ -238,15 +250,14 @@ span {
 }
 
 .guest{
-    width: 7vw;
-    height: 9vh;
-    background-color: rgb(255, 255, 255);
+    width: 10vh;
+    height: 10vh;
     margin: 3%;
 }
 
 #playerGroup{
-    width: 7vw;
-    height: 10vh;
+    width: 15vh;
+    height: 15vh;
     position: absolute;
     z-index: 99;
     left: 25%;
@@ -256,15 +267,14 @@ span {
 }
 
 #mainCharacter {
-    width: 4vw;
+    width: 10vh;
     height: 10vh;
-    background-image: url("../img/mainCharacter.png");
-    background-size: auto 100%;
+    background-image: url("../../img/avatar_nor.png");
+    /* background-size: auto 100%; */
     position: absolute;
     left: 0;
     bottom: 0;
     z-index: 99;
-    background-color: red;
 }
 #trolley{
     width:3vw;

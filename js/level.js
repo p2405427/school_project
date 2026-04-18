@@ -2,6 +2,7 @@
 
 
 */
+
 const Sound = {
   bgm: new Audio("../../audio/background.mp3"),
   click: new Audio("../../audio/click.mp3"),
@@ -35,6 +36,7 @@ const Sound = {
 
   }
 }
+
 class Trolley {
   constructor($trolley, capacity) {
     this.$trolley = $trolley
@@ -111,7 +113,7 @@ class Trolley {
       }
       this.add(item)
       $room.attr("data-roomStatus", "available")
-      $room.css("background-image", "url('../../img/room.jpg')");
+      $room.css("background-image", "url('../../img/room.svg')");
     }
 }
 }
@@ -128,6 +130,31 @@ let guestInterval = null
 let guestCount = 0
 const MAX_GUESTS = parseInt($("#guestMax").text())
 let $countGuest = $("#guestCount")
+const guests_nor = Array.from({ length: 10 }, (v, i) => i + 1)
+const guests_vip = Array.from({ length: 5 }, (v, i) => i + 91)
+const guest_all = [...guests_nor, ...guests_vip]
+//////////////////
+/*
+// 預想的資料結構
+higest_info= {
+  0:{"score":100,"star":"從結果頁返回的星星內文"},
+  1:{"score":400,"star":"從結果頁返回的星星內文"}
+}
+
+*/
+const level = parseInt($("#level").text())
+// let higest_info  
+// let now_info
+// if (localStorage.getItem("higest_level_info") !== null){
+//   // seted
+//   higest_info =  localStorage.getItem("higest_level_info")
+//   if (level in! (higest_info)) higest_info += {level:{"score":0, "star":""}}
+//   else now_info ={level:{"score":0, "star":""}}
+// } else {
+//   // have not seted
+//   higest_info = {level:{"score":0, "star":""}}
+   
+// }
 
 let earn = 0
 let score = 0
@@ -154,6 +181,8 @@ function change_score(amount, op = "add") {
 $(document).ready(async function () {
   window.alreadyFinished = false
   localStorage.removeItem("earn")
+  localStorage.removeItem("score")
+  localStorage.removeItem("level")
   localStorage.removeItem("guestCount")
   localStorage.removeItem("previous")
   localStorage.removeItem("next")
@@ -239,10 +268,12 @@ async function finish() {
 
   let totalSaving = parseInt(localStorage.getItem("totalSaving")) || 0;
   totalSaving += earn
-  localStorage.setItem("totalSaving", totalSaving);
+  localStorage.setItem("totalSaving", totalSaving)
 
-  const level = parseInt($("#level").text())
+  
+  localStorage.setItem("level", level)
   localStorage.setItem("earn", earn)
+  localStorage.setItem("score", score)
   localStorage.setItem("guestCount", guestCount)
   localStorage.setItem("previous", `./level/${level}_level.html`)
   localStorage.setItem("next", `./level/${level + 1}_level.html`)
@@ -269,14 +300,26 @@ function apperGuest() {
 
 function spawnGuest() {
   if (guestCount >= MAX_GUESTS) return
-  const probability = Math.random()
-  const types = probability <0.3? "vip":"normal"
+  // const probability = Math.random()
+  
+  
+  const randomGuest = guest_all[Math.floor(Math.random() * guest_all.length)]
+  let type
+  
+  if (parseInt(randomGuest) > 90) type = "vip"
+  else type = "normal"
    
   const guestId = `guest_${Date.now()}`
-  const guestObj = new Guest(guestId, types)
+  const guestObj = new Guest(guestId, type)
+  
   const $guestElem = $(`
-    <div id="${guestId}" class="guest interact_area" data-floor="0"></div>
-  `)
+    
+    <div id="${guestId}" 
+    class="guest interact_area" data-floor="0">
+    </div>`)
+  
+  $guestElem.css("background-image",`url("../../img/guest/${randomGuest}.png")`)
+    
   $guestElem.data("guestObj", guestObj)
   $guestElem.data("isMoving", false)
 
@@ -303,11 +346,11 @@ class Guest {
       { name: "eating", time: 10000 },
       { name: "checkout", request: "checkout" },
     ]
-    this
+    
     for (let act of activity) {
       this.status = act.name
       this.request = act.request || ""
-      this.room.css({ "background-image": `url('../../img/${act.name}.jpg')` })
+      this.room.css({ "background-image": `url('../../img/${act.name}.svg')` })
       if (act.time) {
         await new Promise(resolve => setTimeout(resolve, act.time))
       } else {
@@ -325,8 +368,9 @@ class Guest {
         }
       }
     }
+    console.log("測試測試測試----------")
     if (this.bonus) addMoney(this.bonus)
-    this.room.css("background-image", "url('../../img/room.jpg')");
+    this.room.css("background-image", "url('../../img/room.svg')");
   }
 
 }
@@ -532,6 +576,7 @@ function interactWithGroundItem($item) {
 }
 
 function isFinish() {
+  if($("#waitting").find(".guest").length > 0) return false
   if(myTrolley.hasGroup("waste")) return false
   
   if(($(".room[data-roomStatus='need-clean']").length || $(".room[data-roomStatus='active']").length)){
@@ -577,14 +622,17 @@ async function serve($room) {
       break
 
     case "checkout":
+      let money = 100
+      if(guestObj.bonus) money += 20
       if (guestObj.$element) {
         guestObj.$element.remove(); 
       }
-      addMoney(100)
+      
+      addMoney(money)
       change_score(100)
       $room.removeData("guestObj"); 
       $room.attr("data-roomStatus", "need-clean")
-      $room.css("background-image", "url('../../img/needClean.jpg')");
+      $room.css("background-image", "url('../../img/needClean.svg')");
 
       myTrolley.clear($room)
       

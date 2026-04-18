@@ -9,20 +9,22 @@
     <link rel="stylesheet" href="../css/done.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><link rel="icon" href="../img/avatar.png" type="image/png">
 </head>
-
 <body>
-    <div class="strongTitle title">Complete level</div>
+    <div class="strongTitle title">Complete level <span id = level></span></div>
     <div id="main">
         <div class="flexContainer">
             <div class="flexBox_img">
+                <div id = star></div>
                 <img class="role" src="../img/finish_avatar.png" alt="role image">
-                <div style="display: none;" class="button" id="shop"><a href="">change your role image</a></div>
+                <!-- <div style="display: none;" class="button" id="shop"><a href="">change your role image</a></div> -->
             </div>
             <div class="flexBox_text">
-                <div class="result">  Total Savings: $<span id="totalSaving"></span></div>
-                <div class="result"> Total income: $<span id="earn"></span></div>
-                <div class="result"> customer served: <span id="guestCount"></span></div>
-                <div class="result"> used time: <span id="time"></span>s</div>
+                <div class="result">Score: <span id="score"></span>　</div>
+                <div class="result">Total Savings: $<span id="totalSaving"></span></div>
+                
+                <div class="result">Total income: $<span id="earn"></span></div>
+                <div class="result">customer served: <span id="guestCount"></span></div>
+                <!-- <div class="result"> used time: <span id="time"></span>s</div> -->
             </div>
         </div>
         <div class="button_container">

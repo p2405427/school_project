@@ -1,3 +1,9 @@
+body{
+    background-image: url("../img/background_1.svg");
+    background-repeat: repeat;
+    background-color: aliceblue;
+}
+
 .linkBox{
     display: inline-block; 
     width: 15%;            
@@ -15,7 +21,7 @@
     width: 30%;
     height: 5%;
     border-radius: 9%;
-    background-color: Busy Crab;
+    background-color:rgb(177, 117, 40);
     text-align: center;
     
 }
@@ -23,7 +29,7 @@
 
 .flexBox_level{
     flex: none;
-    width: 100%;
+    width: 20%;
     height: 15%;
     margin-top: 5%;
     margin-left: 7%;
@@ -32,4 +38,8 @@
     text-align: center;
     border-radius: 5%;
 
+}
+#soon{
+    font-size: 0.7em;
+    text-align: start;
 }
