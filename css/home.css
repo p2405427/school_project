@@ -4,6 +4,11 @@ body{
     background-position: center;
     color: white;
 }
+
+#reset{
+    background-color: rgb(121, 115, 115);
+}
+
 #data{
     background-color: rgb(222, 135, 135);
     font-size: 0.8em;

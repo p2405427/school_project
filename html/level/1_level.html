@@ -22,7 +22,7 @@
     </div>
     <!-- <div style="height: 5vh;"></div> -->
     <div id="cover">
-        <div id="coverContent"><br><br>this is the level 1, you are going to server 4 guest
+        <div id="coverContent"><p>  </p><p></p>  <p>this is the level 1,</p><p>you are going to server 4 guest</p>
             <div id="start">👉I am ready!👈</div>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <div id="upstairs">
             
             <div class="flexContainer floor" id="floor1">
-                <div class="flexBox up_item lift" id="lift_1" data-floor="1"></div>
+                <div class="flexBox up_item lift top_left" id="lift_1" data-floor="1"></div>
                 <div class="flexBox flexContainer room_section">
                     <div class="room  up_item interact_area" id="room_1" data-roomStatus="available" data-floor="1"></div>
                     <div class="room up_item interact_area" id="room_2" data-roomStatus="available" data-floor="1"></div>
@@ -38,7 +38,7 @@
             </div>
         </div>
             
-        <div class="flexBox up_item lift" id="lift_0" data-floor="0"></div>
+        <div class="flexBox up_item lift bottom_left" id="lift_0" data-floor="0"></div>
         <div style="height: 15vh;" ></div>
             <div class="flexContainer" id="ground">
                 <div class="flexBox flexContainer" id="waitting" data-floor="0"></div>
@@ -51,13 +51,13 @@
                         data-floor="0"></div>
 
                         <div class="flexBox g_item interact_item recycle" id="bin_recycle" 
-                        data-floor="0">bin_recycle</div>
+                        data-floor="0"></div>
                     </div>
-                    <div class="flexBox flexContainer">
+                    <!-- <div class="flexBox flexContainer">
                         <div class="flexBox g_item">table</div>
                         <div class="flexBox g_item">table</div>
                         <div class="flexBox g_item">table</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         <div id="playerGroup" data-floor="0" data-isMoving="false">
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="stop">Stop</div>
+        
 
     </div>
     <script src="../../js/level.js"></script>

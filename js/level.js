@@ -12,6 +12,9 @@ const Sound = {
   put: new Audio("../../audio/put_item.mp3"),
   finish: new Audio("../../audio/finish.mp3"),
   swimming: new Audio("../../audio/swimming.mp3"),
+  fall: new Audio("../../audio/fall.mp3"),
+  error: new Audio("../../audio/error.mp3"),
+  vip: new Audio("../../audio/vip.mp3"),
   init() {
       this.bgm.loop = true
   },
@@ -264,12 +267,18 @@ async function finish() {
   if (window.alreadyFinished) return
   window.alreadyFinished = true
   Sound.stop("bgm")
-  Sound.play("finish")
+  let pass = true
+  if(score >= 100 * MAX_GUESTS) Sound.play("finish")
+  else {
+    Sound.play("fall")
+    pass = false
+  }
 
    await new Promise((resolve) => {
     let time = 2
     $cover.fadeIn(speed)
-    $coverContent.text("Level Complete!")
+    
+    $coverContent.text(pass? "Level Complete!":"Game Over.")
     const timer = setInterval(() => {
       
       $coverContent.removeClass("animate-pulse")
@@ -299,7 +308,7 @@ async function finish() {
   }else localStorage.setItem("guestCount", guestCount)
   
   localStorage.setItem("previous", `./level/${level}_level.html`)
-  localStorage.setItem("next", `./level/${level + 1}_level.html`)
+  if (level<2)  localStorage.setItem("next", `./level/${level + 1}_level.html`)
 
   // spendtime
   window.location.href = "../done.html"
@@ -329,7 +338,10 @@ function spawnGuest() {
   const randomGuest = guest_all[Math.floor(Math.random() * guest_all.length)]
   let type
   
-  if (parseInt(randomGuest) > 90) type = "vip"
+  if (parseInt(randomGuest) > 90) {
+    type = "vip"
+    Sound.play("vip")
+  }
   else type = "normal"
    
   const guestId = `guest_${Date.now()}`
@@ -397,9 +409,10 @@ class Guest {
   
   leave() {
     guest_leave ++ 
-    $(`#${this.id}`).fadeOut(500, function() {
+    $(`#${this.id}`).fadeOut(0, function() {
       $(this).remove()
     })
+    if(isFinish()) finish()
   }
 
   async startService() {
@@ -640,14 +653,19 @@ function interactWithGroundItem($item) {
 }
 
 function isFinish() {
-  if($("#waitting").find(".guest").length > 0) return false
+  if($("#waitting").find(".guest").length > 0){
+    console.log("有客")
+    return false
+  } 
   if(myTrolley.hasGroup("waste")) return false
   
   if(($(".room[data-roomStatus='need-clean']").length || $(".room[data-roomStatus='active']").length)){
     return false
   }
 
-  if(guestCount < MAX_GUESTS) return false
+  if(guestCount < MAX_GUESTS) {
+    console.log("仲有人")
+    return false}
   
   console.log("finished!")
   return true

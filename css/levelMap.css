@@ -1,7 +1,11 @@
 body{
-    background-image: url("../img/background_1.svg");
-    background-repeat: repeat;
+    background-image: url("../img/levelMapBackground.png");
     background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-size: 35vw auto;
+    margin-right: 2%;
+    background-position: 90% bottom;
+    height: 90vh;
 }
 
 .linkBox{

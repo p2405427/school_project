@@ -1,3 +1,6 @@
+body{
+    height: 100vh;
+}
 .flexBox_text{
     /* display: flex; */
     margin-left: 2vw;
@@ -6,6 +9,27 @@
     font-size: 0.7em;
 }
 
+#cover{
+    display: none;
+    height: 70vh;
+    z-index: 999;
+    padding-left: 4%;
+    font-size: 1em;
+    text-align: start;
+    background-image: url("../new_img/illustrater/SW_sorce/u1f980_u1f9aa.png");
+    background-size: 25vw auto;
+    
+    background-repeat: no-repeat;
+    background-position: right 100%;
+}
+#getIt{
+    color: rgb(219, 2, 2);
+    /* text-shadow: 2px 2px 3px #000; */
+}
+#getIt:hover{
+    font-weight: bold;
+    cursor: pointer;
+}
 .button_container{
     /* position: relative; */
     /* position: absolute;
@@ -34,6 +58,9 @@ span{
 }
 
 #star{
+    /* height: 10vw;
+    width: auto; */
+    display: flex;
     margin-left: 4vw;
     text-align: center;
     align-items: center;
@@ -56,4 +83,32 @@ span{
     color:aliceblue;
     text-align: center;
     border-radius: 5%;
+}
+
+@media (max-width:643px) {
+    #star img{
+        height: 5vh;    
+    }
+}
+@media (max-width:539px) {
+    #strongTitle{
+        font-size: 0.7em;
+    }
+    #cover{
+        margin-top: 10vh;
+        height: 50vh;
+    }
+}
+@media (max-width:500px) {
+    #strongTitle{
+        text-shadow: none;
+    }
+}
+@media (max-width:400px) {
+    #strongTitle{
+        font-size: 0.5em;
+    }
+    #cover{
+        height: 40vh;
+    }
 }
