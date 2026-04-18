@@ -226,7 +226,8 @@ span {
     line-height: 20vh;
     height: 20vh;
     width: 40vw;
-    background-color: rgb(224, 124, 124);
+    border-color: gray;
+    /* background-color: rgb(224, 124, 124); */
 }
 
 #object_section {
@@ -264,6 +265,11 @@ span {
     bottom: 40%;
     transition: none;
     pointer-events: none;/* 點擊可以穿透到下一層 */
+}
+
+#stateOfCharacter{
+    width: 10vh;
+    height: 4vh;
 }
 
 #mainCharacter {
@@ -324,7 +330,7 @@ span {
     background-size: contain;
 }
 .trash{
-    background-image: url("../img/trash.jpg");
+    background-image: url("../img/trash.png");
     background-size: 100% auto;
 }
 

@@ -133,6 +133,7 @@ let $countGuest = $("#guestCount")
 const guests_nor = Array.from({ length: 10 }, (v, i) => i + 1)
 const guests_vip = Array.from({ length: 5 }, (v, i) => i + 91)
 const guest_all = [...guests_nor, ...guests_vip]
+let guest_leave = 0
 //////////////////
 /*
 // 預想的資料結構
@@ -160,19 +161,38 @@ let earn = 0
 let score = 0
 const $earn = $("#earn")
 const $score = $("#score")
+const $stateOfCharacter =$("#stateOfCharacter")
 let hygienic = true
 
 function addMoney(amount) {
   earn += amount
   $earn.text(earn)
   Sound.play("money")
+  
+  $stateOfCharacter.css("background-image", "url('../../img/getMoney.png')")
+  setTimeout(() => {
+        $stateOfCharacter.css("background-image", "none")
+    }, 1000)
+  
 }
 
 function change_score(amount, op = "add") {
   if(op === "add"){
     score += amount
-  } else if(op === "sub"){
+    if(amount != 100){
+    $stateOfCharacter.css("color","green").html(`+ ${amount}`);
+
+    setTimeout(() => {
+        $stateOfCharacter.html("")
+    }, 1000)
+    }
+
+  }else if(op === "sub"){
     score -= amount
+    $stateOfCharacter.css("color","red").html(`- ${amount}`);
+    setTimeout(() => {
+        $stateOfCharacter.html("");
+    }, 1000);
   }
   $score.text(score)
 }
@@ -274,7 +294,10 @@ async function finish() {
   localStorage.setItem("level", level)
   localStorage.setItem("earn", earn)
   localStorage.setItem("score", score)
-  localStorage.setItem("guestCount", guestCount)
+  if(guest_leave){
+    localStorage.setItem("guestCount", `${guestCount-guest_leave}/${guestCount}`)
+  }else localStorage.setItem("guestCount", guestCount)
+  
   localStorage.setItem("previous", `./level/${level}_level.html`)
   localStorage.setItem("next", `./level/${level + 1}_level.html`)
 
@@ -322,11 +345,12 @@ function spawnGuest() {
     
   $guestElem.data("guestObj", guestObj)
   $guestElem.data("isMoving", false)
-
+  // $guestElem.data("startTime", Date.now())
   $("#waitting").append($guestElem)
-
+  
   guestCount++
   $countGuest.text(guestCount)
+  guestObj.timer()
 }
 
 class Guest {
@@ -334,11 +358,50 @@ class Guest {
     this.id = id
     this.type = type
     this.room = null
-    this.timer = null
+    this.time = 0
     this.status = ""
     this.request = ""
     this.bonus = type === "vip" ? 20 : 0
   }
+    
+  timer() {
+    return new Promise((resolve) => {
+      const timer = setInterval(() => {
+        this.time++
+        
+        if (this.room) {
+         clearInterval(timer)
+         resolve()
+         return
+        }
+
+        if (this.time === 15 && !(this.room)){
+          change_score(30,"sub")
+          $(`#${this.id}`).css({
+            "border": "3px solid red",
+            "transition": "all 0.5s"
+          })
+          console.log($(`#${this.id}`))
+          
+        }
+        
+        if (this.time >= 30 && !(this.room)){ 
+          change_score(30,"sub")
+          clearInterval(timer)
+          this.leave()
+          resolve()
+        }
+      }, 1000)
+    })
+  }
+  
+  leave() {
+    guest_leave ++ 
+    $(`#${this.id}`).fadeOut(500, function() {
+      $(this).remove()
+    })
+  }
+
   async startService() {
     const activity = [
       { name: "thinking", time: 2000},
@@ -404,6 +467,7 @@ $(".room").on("click", async function () {
     await guestToRoom($room, $selected)
   } else {
     Sound.play("click")
+
     await moveTo($room, $playerGroup)
     await serve($room)
   }
