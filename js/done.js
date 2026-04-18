@@ -12,9 +12,9 @@ const $guestCount = $("#guestCount")
 const $earn = $("#earn")
 const $next = $("#next")
 // const $time = $("#time")
- in getItem("higest_level_info")
-// const higest_score = 
-const higest_level_info = parseInt(getItem("higest_level_info").score) || 0
+//  in getItem("higest_level_info")
+// // const higest_score = 
+// const higest_level_info = parseInt(getItem("higest_level_info").score) || 0
 const level = localStorage.getItem("level") 
 const score = localStorage.getItem("score") 
 const totalSaving = localStorage.getItem("totalSaving") 
