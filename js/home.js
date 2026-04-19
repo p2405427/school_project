@@ -1,5 +1,5 @@
 const $totalSaving = $("#totalSaving")
-const totalSaving = localStorage.getItem("totalSaving") 
+let totalSaving = localStorage.getItem("totalSaving") 
 if (totalSaving) {
     $totalSaving.text(totalSaving)
 }else {
@@ -12,5 +12,9 @@ $("#reset").on("click", function(){
     if (result == true) {
         localStorage.clear()
         alert("Data successfully deleted!");
+        $totalSaving.text(0)
+
+
+
     }
 })
