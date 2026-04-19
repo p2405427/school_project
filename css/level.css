@@ -182,7 +182,7 @@ br{
     width: 15vw;
     margin-left: 2vw;
     margin-right: 2vw;
-    background-image: url("../../img/left.svg");
+    background-image: url("../img/left.svg");
 
 }
 
@@ -307,7 +307,7 @@ br{
 #mainCharacter {
     width: 10vh;
     height: 10vh;
-    background-image: url("../../img/avatar_nor.png");
+    background-image: url("../img/avatar_nor.png");
     /* background-size: auto 100%; */
     position: absolute;
     left: 0;

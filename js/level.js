@@ -6,7 +6,7 @@
 const Sound = {
   bgm: new Audio("../../audio/background.mp3"),
   click: new Audio("../../audio/click.mp3"),
-  start: new Audio("../../audio/game start.mp3"),
+  start: new Audio("../../audio/gameStart.mp3"),
   bell: new Audio("../../audio/bell.mp3"),
   money: new Audio("../../audio/money.mp3"),
   put: new Audio("../../audio/put_item.mp3"),
