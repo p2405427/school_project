@@ -183,18 +183,26 @@ function change_score(amount, op = "add") {
   if(op === "add"){
     score += amount
     if(amount != 100){
-    $stateOfCharacter.css("color","green").html(`+ ${amount}`);
+    $stateOfCharacter.css(
+      {"color":"green",
+       "background-color":"white"
+      }
+    ).html(`+ ${amount}`);
 
     setTimeout(() => {
-        $stateOfCharacter.html("")
+        $stateOfCharacter.html("").css("background-color","transparent")
     }, 1000)
     }
 
   }else if(op === "sub"){
     score -= amount
-    $stateOfCharacter.css("color","red").html(`- ${amount}`);
+    $stateOfCharacter.css(
+      {"color":"red",
+       "background-color":"white"
+      }
+    ).html(`+ ${amount}`);
     setTimeout(() => {
-        $stateOfCharacter.html("");
+        $stateOfCharacter.html("").css("background-color","transparent");
     }, 1000);
   }
   $score.text(score)

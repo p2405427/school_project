@@ -289,7 +289,7 @@ br{
 
 #playerGroup{
     width: 15vh;
-    height: 15vh;
+    height: 20vh;
     position: absolute;
     z-index: 99;
     left: 25%;
@@ -301,6 +301,7 @@ br{
 #stateOfCharacter{
     width: 10vh;
     height: 4vh;
+    top:0
 }
 
 #mainCharacter {
@@ -415,8 +416,7 @@ br{
     }
 
     #playerGroup{
-    /* width: 7vw; */
-    height: 10vh;
+     height: 14vh;
     }
 
     .guest{
@@ -535,5 +535,9 @@ br{
 @media (max-width:380px) {
     #cover{
         font-size: 0.5em;
+    }
+    #playerGroup{
+        width: 13vh;
+        height: 13vh;
     }
 }
