@@ -1,6 +1,7 @@
 # school_project
 # Busy Crab: Deep Sea Restaurant Management Simulation Web Game
-
+# Youtube Link: https://youtu.be/n5XK6-PRQJk
+# try to play: https://p2405427.github.io/school_project/index.html
 ## Graphical Abstract
 
 ![Graphical Abstract](level2.html)
