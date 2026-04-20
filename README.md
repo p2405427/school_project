@@ -54,17 +54,20 @@ Reason: Real-time feedback is essential for management web games. Iterative test
 
 ### Development Steps (Timeline)
 
-| Step | Description | Estimated Completion |
+| Step | Description | finished time |
 |------|-------------|----------------------|
-| 1 | Initial concept (layout + gameplay) | Week 1 |
-| 2 | Basic layout (HTML + CSS) | Week 2 |
-| 3 | Movement system (listeners + `moveTo()` + `calculateAndMove()`) | Week 3 |
-| 4 | Floor object interaction & cart | Week 4 |
-| 5 | Opening animation, guest objects, complete gameplay flow | Week 5 |
-| 6 | Sound system | Week 6 |
-| 7 | Polishing (main character, guest images, scene objects) | Week 7 |
-| 8 | Scoring system | Week 8 |
-| 9 | CSS adjustments | Week 9 |
+| 1 | Initial concept (layout + gameplay) | 0322 |
+| 2 | Basic layout (HTML + CSS) | 0324 |
+| 3 | Movement system (listeners + `moveTo()` + `calculateAndMove()`) | 0331 |
+| 4 | Guest objct & Player operation flow | 0405 |
+| 5 | Determine if the game has ended and redirect to the results screen (done.html) | 0406 |
+| 6 | RWD basic | 0407|
+| 7 | try to write howToPlay.html(./html/howToPaly) | 0410 |
+| 8 | basic sound effects & basic UI(guest, food)| 0412|
+| 9 | Score system| 0413|
+| 10 | Add stars to the rating system [done.html], Beautify level scene elements|0417|
+| 11 |Adjustments completed RWD, video|0419|
+
 
 ### Roles & Contribution Percentage
 
