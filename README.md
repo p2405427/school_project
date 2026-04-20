@@ -59,26 +59,37 @@ Reason: Real-time feedback is essential for management web games. Iterative test
 | 1 | Initial concept (layout + gameplay) | 0322 |
 | 2 | Basic layout (HTML + CSS) | 0324 |
 | 3 | Movement system (listeners + `moveTo()` + `calculateAndMove()`) | 0331 |
-| 4 | Guest objct & Player operation flow | 0405 |
-| 5 | Determine if the game has ended and redirect to the results screen (done.html) | 0406 |
-| 6 | RWD basic | 0407|
-| 7 | try to write howToPlay.html(./html/howToPaly) | 0410 |
-| 8 | basic sound effects & basic UI(guest, food)| 0412|
-| 9 | Score system| 0413|
-| 10 | Add stars to the rating system [done.html], Beautify level scene elements|0417|
-| 11 |Adjustments completed RWD, video|0419|
+| 4 | Guest appear to go in room, room state | 0402 |
+| 5 | Guest object, only menoy system | 0405 |
+| 6 | Guest objct & Player operation flow | 0405 |
+| 7 | Determine if the game has ended and redirect to the results screen (done.html) | 0406 |
+| 8 | RWD basic | 0407|
+| 9 | try to write howToPlay.html(./html/howToPaly) | 0410 |
+| 10 | Adding VIP guest | 0411 |
+| 11 | basic sound effects & basic UI(guest, food)| 0412|
+| 12 | Score system| 0413|
+| 13 | Add stars to the rating system [done.html], Beautify level scene elements|0417|
+| 14 | completed RWD | 0418 |
+| 15 | Adjustments , video|0419|
 
 
 ### Roles & Contribution Percentage
 
-- **Vong Hun Si (p2405427)**: all code, initial concept, artwork (all images `*.ai`) – **100%**  
-- Other members (no code contribution): only suggestions for artwork and sound – **0%**
+- **Vong Hun Si (p2405427)**: all code, initial concept, artwork (All `*.svg` files were designed using Adobe Illustrator.) – **90%**  
+- Other members (no code contribution): only suggestions for artwork and sound – **10%**
 
 ### Current Status
 
-- Completed: movement system, guest service workflow, scoring system, basic sound effects  
-- Debugging: cross-device speed compensation, some animation sync issues  
-- To be implemented: multi-level system, detailed scoring criteria (see `每關評分標準.txt`)
+- Completed: The basic gameplay consists of only two levels.(movement system, guest service workflow, scoring system, basic sound effects, detailed scoring criteria (see `每關評分標準.txt`))
+- Debugging: cross-device speed compensation
+- To be implemented:
+-- add 'stop', and have a button to see the word version of howToPaly
+-- add CSS animations to add/remove objects to the cart
+-- add to total timer
+-- add guest timer - mood value
+-- add the equipment shop, to upgrade your gear and sell items at a 20% discount.
+-- future levels will include more items or unexpected situations.
+  (see `功能.txt`, `調整.txt`, ``)
 
 ### Future Work
 
@@ -105,12 +116,11 @@ Reason: Real-time feedback is essential for management web games. Iterative test
 ## Demo
 
 🎥 **YouTube Video Link** (replace after uploading)  
-[Click to watch the game demo](https://youtu.be/your_video_id)
+[Click to watch the game demo](https://youtu.be/n5XK6-PRQJk)
 
 The video includes:  
-- How to start the game  
 - How to play (movement, serving guests, using the cart)  
-- A complete gameplay session (10–15 minutes)
+- HOw did we develop the game
 
 ---
 
