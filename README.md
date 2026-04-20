@@ -80,18 +80,14 @@ Reason: Real-time feedback is essential for management web games. Iterative test
 
 ### Current Status
 
-- Completed: The basic gameplay consists of only two levels.(movement system, guest service workflow, scoring system, basic sound effects, detailed scoring criteria (see `每關評分標準.txt`))
+- Completed: The basic gameplay, only two levels.(movement system, guest service workflow, scoring system, basic sound effects, detailed scoring criteria (see `每關評分標準.txt`))
 - Debugging: cross-device speed compensation
-- To be implemented:
--- add 'stop', and have a button to see the word version of howToPaly
--- add CSS animations to add/remove objects to the cart
--- add to total timer
--- add guest timer - mood value
--- add the equipment shop, to upgrade your gear and sell items at a 20% discount.
--- future levels will include more items or unexpected situations.
-  (see `功能.txt`, `調整.txt`, ``)
+- To be implemented: The basic gameplay is already quite complete, but there are still plans for the future.
+
+  
 
 ### Future Work
+> (see `功能.txt`, `調整.txt`, ``)
 
 1. **Cross-device speed normalization**  
    Adjust speed coefficient based on screen width to fix speed inconsistency between mobile and PC.
@@ -99,17 +95,18 @@ Reason: Real-time feedback is essential for management web games. Iterative test
 2. **Upgrade system**  
    Use earned money to upgrade cart capacity, character speed, selling price multiplier, etc.
 
-3. **Multi-level & scoring mechanism**  
-   Implement level switching, pass conditions, and star ratings according to `每關評分標準.txt`.
 
 4. **Parameter tuning & balancing**  
    Continuously balance difficulty and player experience based on records in `調整.txt`.
 
 5. **Full sound effects & background music**  
-   Add more open-source sounds (BGM, button feedback, level-clear cheers, etc.).
+   Add more open-source sounds (Guest calls, clicks on non-interactive objects).
 
-6. **Layout & responsive improvements**  
-   Further enhance responsive design according to `切版.txt` and `圖像設計.txt`.
+7. add 'stop', and have a button to see the word version of howToPaly
+8. add CSS animations to add/remove objects to the cart
+9. add to total timer
+10. add guest timer - mood value
+11. future levels will include more items or unexpected situations.
 
 ---
 
@@ -133,9 +130,9 @@ The video includes:
 
 ### Runtime Requirements
 
-- Minimum hardware: any device that can run a modern browser  
-- Software: latest version of Chrome / Edge / Safari, recommended resolution 1920×1080 (responsive)  
-- No additional server required – open `index.html` directly or use Live Server
+- Minimum hardware: any device, narrowest screen size (320) that can run a modern browser  
+- Software: modern browser. 
+- No additional server required – open `index.html` directly.
 
 ### Packages Used
 
@@ -168,7 +165,7 @@ The project includes the following auxiliary files (for development reference on
 - `圖像設計.txt` – graphic design notes  
 - `每關評分標準.txt` – level scoring details  
 - `調整.txt` – balancing adjustment records  
-- `軟件工程—遊戲設計.pdf` – design document
+- `軟件工程—遊戲設計.pdf` – Preliminary concept
 
 ### Copyright & License
 
