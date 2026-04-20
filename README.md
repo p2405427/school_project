@@ -4,7 +4,7 @@
 # try to play: https://p2405427.github.io/school_project/index.html
 ## Graphical Abstract
 
-![Graphical Abstract](level2.html)
+![Graphical Abstract](./readMe.png)
 
 ---
 
