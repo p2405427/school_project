@@ -200,7 +200,7 @@ function change_score(amount, op = "add") {
       {"color":"red",
        "background-color":"white"
       }
-    ).html(`+ ${amount}`);
+    ).html(`- ${amount}`);
     setTimeout(() => {
         $stateOfCharacter.html("").css("background-color","transparent");
     }, 1000);
