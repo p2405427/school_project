@@ -386,6 +386,13 @@ br{
     z-index: 999;
 }
 
+.interact_item:hover{
+    background-color: rgba(255, 255, 255, 0.397); 
+}
+/* .interact_area:hover{
+    background-color: 
+} */
+
 /* .stop {
     position: absolute;
     bottom: 2vh;
@@ -399,6 +406,7 @@ br{
     /* border: 2px solid black; */
     /* box-shadow: 0px 0px 10px;} */
  
+
 
 @media (max-width:1920px) {
     body{
@@ -467,11 +475,13 @@ br{
     }
 }
 @media (max-width:500px) {
-    
+    #start{
+        font-size: 1.2em;
+    }
     .lift{
         width: 15vw;
         height: 20vh;
-        margin-right: 5vw;
+        margin-right: 2vw;
     }
     .room{
         /* margin-top: auto; */
@@ -483,6 +493,11 @@ br{
         margin-left: 5vw;
         align-items: flex-end;
     }
+    #ground {
+    margin-top: 0vh;
+    margin-bottom: 0%;
+    height: 20vh;
+}
     /* #playerGroup{
         width: 12vw;
         height: 12vh;
@@ -532,9 +547,12 @@ br{
         height: 10vh;
     }
 }
-@media (max-width:380px) {
+@media (max-width:400px) {
+    /* #start{
+        font-size: 1.8em;
+    } */
     #cover{
-        font-size: 0.5em;
+        font-size: 0.8em;
     }
     #playerGroup{
         width: 13vh;

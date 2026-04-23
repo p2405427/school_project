@@ -1,8 +1,9 @@
 /*
 higest_level_info = {level:["score":score, "star":$star.html]}
 */
-
+const ranklist = [[570, 500, 430, 400], [1000, 900, 800, 700]]
 const $level = $("#level")
+
 const $score = $("#score")
 const $star = $("#star")
 
@@ -15,7 +16,7 @@ const $next = $("#next")
 //  in getItem("higest_level_info")
 // // const higest_score = 
 // const higest_level_info = parseInt(getItem("higest_level_info").score) || 0
-const level = localStorage.getItem("level") 
+const level = parseInt(localStorage.getItem("level") )
 const score = localStorage.getItem("score") 
 const totalSaving = localStorage.getItem("totalSaving") 
 const previous = localStorage.getItem("previous")
@@ -28,28 +29,43 @@ let guestnumber = parseInt(guestCount)
 let starText = `<img src="../img/star.png" alt="star">`
 let no_starText = `<img src="../img/no_star.png" alt="star">`
 $level.text(level)
-if(score >= (guestnumber + 1)*100 + 60){ 
-    $star.html(starText.repeat(4))
-    const $cover = $("#cover")
-    const $main = $("#main")
-    $cover.css("display","block")
-    $main.css("display", "none")
-    $("#getIt").on("click", function(){
-        $cover.css("display","none")
-        const Congratulations = new Audio("../../audio/universfield-level-passed-143039.mp3")
-        Congratulations.play()
-        $main.css("display", "block")
-    })
-}else if(score >= (guestnumber + 1)*100) $star.html(starText.repeat(3))
- else if(score >= guestnumber*100 + 30) $star.html(starText.repeat(2) + no_starText)
- else if(score >= guestnumber*100) $star.html(starText +no_starText.repeat(2))
- else {
+let hasStar = false
+ranklist[level-1].forEach((item, index) => {
+    if (hasStar) return
+
+    if (score >= item){
+        switch(index){
+            case 0:
+                $star.html(starText.repeat(4))
+                const $cover = $("#cover")
+                const $main = $("#main")
+                $cover.css("display","block")
+                $main.css("display", "none")
+                $("#getIt").on("click", function(){
+                    $cover.css("display","none")
+                    const Congratulations = new Audio("../../audio/universfield-level-passed-143039.mp3")
+                    Congratulations.play()
+                    $main.css("display", "block")
+                })
+                 break
+            
+            case 1: $star.html(starText.repeat(3));break
+            case 2: $star.html(starText.repeat(2) + no_starText) ;break
+            case 3: $star.html(starText + no_starText.repeat(2));         break
+        }
+        hasStar = true
+        
+    }
+})
+if(!hasStar){
     $star.html(no_starText.repeat(3))
     $(".role").attr("src","../img/fall_avatar.png")
     $next.attr("href", "../index.html")
     $next.html('<div class="button p_button done_button">Home 🏡</div></a>')
-
 }
+
+
+
 $score.text(score)
 
 higest_level_info = {"level":level, "score":score, "star":$star.html}
